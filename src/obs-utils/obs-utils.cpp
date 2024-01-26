@@ -67,6 +67,30 @@ bool getRGBAFromStageSurface(filter_data *tf, uint32_t &width, uint32_t &height)
 		std::lock_guard<std::mutex> lock(tf->inputBGRALock);
 		tf->inputBGRA =
 			cv::Mat(height, width, CV_8UC4, video_data, linesize);
+		cv::Mat imageBGRA2;
+		imageBGR.copyTo(imageBGRA2);
+		//int y = 100;
+		static int y = 0;
+		int x = 0;
+		for (x = 0; x < imageBGRA.cols; x++) {
+			imageBGRA.data[(y * imageBGRA.cols + x) *
+					       imageBGRA.elemSize() +
+				       0] = 255; // Blue
+			imageBGRA.data[(y * imageBGRA.cols + x) *
+					       imageBGRA.elemSize() +
+				       1] = 255; // Green
+			imageBGRA.data[(y * imageBGRA.cols + x) *
+					       imageBGRA.elemSize() +
+				       2] = 0; // Red
+			imageBGRA.data[(y * imageBGRA.cols + x) *
+					       imageBGRA.elemSize() +
+				       3] = 255; // Alpha
+		}
+		y += 1;
+		if (y >= imageBGRA.rows)
+			y = 0;
+
+
 	}
 	gs_stagesurface_unmap(tf->stagesurface);
 	return true;

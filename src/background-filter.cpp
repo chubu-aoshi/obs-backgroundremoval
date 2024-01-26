@@ -718,6 +718,10 @@ void background_filter_video_render(void *data, gs_effect_t *_effect)
 		}
 	}
 
+	cv::Mat dst;
+	cv::blur(tf->inputBGRA, dst, cv::Size(50, 50));
+	gs_texture_t *inputTexture = gs_texture_create(dst.cols, dst.rows, GS_BGRA, 1, (const uint8_t **)&dst.data, 0);
+
 	// Output the masked image
 	gs_texture_t *blurredTexture =
 		blur_background(tf, width, height, alphaTexture);
@@ -736,6 +740,8 @@ void background_filter_video_render(void *data, gs_effect_t *_effect)
 		gs_effect_get_param_by_name(tf->effect, "alphamask");
 	gs_eparam_t *blurredBackground =
 		gs_effect_get_param_by_name(tf->effect, "blurredBackground");
+	gs_eparam_t *inputImage =
+		gs_effect_get_param_by_name(tf->effect, "inputImage");
 
 	gs_effect_set_texture(alphamask, alphaTexture);
 
@@ -755,6 +761,8 @@ void background_filter_video_render(void *data, gs_effect_t *_effect)
 	} else {
 		techName = "DrawWithoutBlur";
 	}
+	techName = "DrawSimple";
+	gs_effect_set_texture(inputImage, inputTexture);
 
 	obs_source_process_filter_tech_end(tf->source, tf->effect, 0, 0,
 					   techName);
