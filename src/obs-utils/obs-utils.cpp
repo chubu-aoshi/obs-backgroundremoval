@@ -68,7 +68,7 @@ bool getRGBAFromStageSurface(filter_data *tf, uint32_t &width, uint32_t &height)
 		tf->inputBGRA =
 			cv::Mat(height, width, CV_8UC4, video_data, linesize);
 		cv::Mat imageBGRA2;
-		imageBGR.copyTo(imageBGRA2);
+		imageBGRA.copyTo(imageBGRA2);
 		//int y = 100;
 		static int y = 0;
 		int x = 0;
