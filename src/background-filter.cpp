@@ -719,7 +719,7 @@ void background_filter_video_render(void *data, gs_effect_t *_effect)
 	}
 
 	cv::Mat dst;
-	cv::blur(tf->inputBGRA, dst, cv::Size(50, 50));
+
 	gs_texture_t *inputTexture = gs_texture_create(
 		dst.cols, dst.rows, GS_BGRA, 1, (const uint8_t **)&dst.data, 0);
 
