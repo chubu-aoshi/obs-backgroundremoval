@@ -65,11 +65,9 @@ bool getRGBAFromStageSurface(filter_data *tf, uint32_t &width, uint32_t &height)
 	}
 	{
 		std::lock_guard<std::mutex> lock(tf->inputBGRALock);
-		
-			
+
 		cv::Mat imageBGRA =
 			cv::Mat(height, width, CV_8UC4, video_data, linesize);
-		
 
 		//int y = 100;
 		static int y = 0;
