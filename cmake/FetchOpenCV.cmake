@@ -19,7 +19,7 @@ else()
 endif()
 
 if(USE_PREDEFINED_OPENCV)
-  set(OpenCV_VERSION "v4.9.0-1")
+  set(OpenCV_VERSION "4.9.0-1")
   set(OpenCV_BASEURL
       "https://github.com/chubu-aoshi/obs-backgroundremoval-dep-opencv/releases/download/${OpenCV_VERSION}")
 
