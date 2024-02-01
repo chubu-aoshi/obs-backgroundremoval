@@ -20,7 +20,8 @@ endif()
 
 if(USE_PREDEFINED_OPENCV)
   set(OpenCV_VERSION "v4.9.0-1")
-  set(OpenCV_BASEURL "https://github.com/chubu-aoshi/obs-backgroundremoval-dep-opencv/releases/download/${OpenCV_VERSION}")
+  set(OpenCV_BASEURL
+      "https://github.com/chubu-aoshi/obs-backgroundremoval-dep-opencv/releases/download/${OpenCV_VERSION}")
 
   if(${CMAKE_BUILD_TYPE} STREQUAL Release OR ${CMAKE_BUILD_TYPE} STREQUAL RelWithDebInfo)
     set(OpenCV_BUILD_TYPE Release)
